@@ -11,7 +11,7 @@ const port = process.env.PORT || 8080
 const dbURI = "mongodb+srv://lorenzomariosa:rdTEO4Dfs3bixtYQ@wtblog.jefe3.mongodb.net/WTblog?retryWrites=true&w=majority"
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology : true })
-    .then((result) => app.listen(8080))
+    .then((result) => app.listen(port))
     .catch((error) => console.log(error))
 
 app.set('views', './views')
