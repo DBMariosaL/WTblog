@@ -12,6 +12,7 @@
         <h1 class="mb-4">Edit Article</h1>
 
         <form action="/articles/<%= article.id %>?_method=PUT" method="POST">
+            <%# including the article's form to the edit page%>
             <%- include('form_fields') %>
 
         </form>

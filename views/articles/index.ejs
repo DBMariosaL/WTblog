@@ -2,23 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <%# adding bootstrap's CSS%>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%# adding the website's title%>
     <title>Blog</title>
 </head>
 <body>
     <div class="container">
+        <%# adding the page's title%>
         <h1 class="mb-4">Blog Articles</h1>
+        <%# adding the button to create a new article%>
         <a href="/articles/new" class="btn btn-success"> New Articles</a>
+        <%# adding embedded javascript to the HLTM with ejs%>
+        <%# displaying all the articles from the database%>
         <% articles.forEach(article=>{ %>
             <div class="card mt-4">
                 <div class="card-body">
+                    <%# displaying the article's title%>
                     <h4 class="card-title"><%= article.title %></h4>
+                    <%# displaying the article's late modified date%>
                     <div class="card-subtitle text-muted mb-2">
                         <%= article.createdAt.toLocaleDateString() %>
                     </div>
+                    <%# displaying the article's description%>
                     <div class="card-text mb-2"><%= article.description %></div>
+                    <%# adding the buttons access,edit and delete the article%>
                     <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
                     <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
                     <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">

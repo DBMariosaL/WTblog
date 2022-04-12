@@ -1,17 +1,22 @@
 const express = require('express');
 const res = require('express/lib/response');
+
 const Article = require('./../models/articles');
+//setting up the router to create views
 const router = express.Router()
 
+//showing the new article page
 router.get('/new', (req, res) => {
     res.render('articles/new', { article: new Article() })
 })
 
+//showing themodifying page of the article with it's id
 router.get('/edit/:id', async (req, res) => {
     const article = await Article.findById(req.params.id)
     res.render('articles/edit', { article: article })
 })
 
+//showing the selected article with it's slug
 router.get('/:slug', async (req, res) => {
     const article = await Article.findOne({ slug: req.params.slug })
     if (article == null) {
@@ -20,6 +25,7 @@ router.get('/:slug', async (req, res) => {
     res.render('articles/show', { article: article })
 })
 
+//Saving the new article and redirecting to the new page
 router.post('/', async (req, res) => {
     let article = new Article({
         title: req.body.title,
@@ -35,6 +41,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+//Saving the modified article and redirecting to the new page
 router.put('/:id', async (req, res) => {
     req.article = await Article.findById(req.params.id)
     let article = req.article
@@ -50,9 +57,11 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+//Deleting the modified article and redirecting to the route page
 router.delete('/:id', async (req, res) => {
     await Article.findByIdAndDelete(req.params.id)
     res.redirect('/')
 })
 
+//Creating the articles router accessed in the other files
 module.exports = router
