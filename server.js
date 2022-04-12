@@ -6,6 +6,7 @@ const articleRouter = require ('./routes/articles')
 const methodOverride = require('method-override')
 
 const app = express()
+const port = process.env.MONGODB_URI || 8080
 
 const dbURI = "mongodb+srv://lorenzomariosa:rdTEO4Dfs3bixtYQ@wtblog.jefe3.mongodb.net/WTblog?retryWrites=true&w=majority"
 
